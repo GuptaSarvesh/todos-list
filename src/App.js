@@ -7,7 +7,12 @@ import Footer from "./MyComponents/Footer";
 import AddTodo from './MyComponents/AddTodo';
 import About from './MyComponents/About';
 import React, { useState,useEffect } from 'react';
-import {BrowserRouter as Router,Switch,Routes,Route} from 'react-router-dom';
+import {
+  BrowserRouter as Router,
+  Route,
+  Routes,
+  Link
+} from "react-router-dom";
 
 function App() {
 let initTodo;
@@ -62,33 +67,26 @@ const addTodo=(title,desc)=>{
 
   return (
 <>
+
+
 <Router>
 <Header title="My Todo List" searchBar={false}/>
-<AddTodo addTodo={addTodo}/>
-<Todos todos={todos} onDelete={onDelete}/>
+<Routes>
+        
+<Route exact path="/" element={<AddTodo addTodo={addTodo} />} />
+<Route exact path="/" element={<Todos todos={todos} onDelete={onDelete} />} />
+<Route exact path="/about" element={<About/>} /> 
+          
+</Routes>
 <Footer/>
 </Router>
+
 </>
   );
 }
 
 export default App;
 
-/*<Switch>
-          <Route path="/" render={()=>{
-            return(
-            <>
-            <AddTodo addTodo={addTodo}/>
-            <Todos todos={todos} onDelete={onDelete}/>
-            </> )
 
-         }}>
-           
-          </Route>
-          <Route path="/about">
-            <About/>
-          </Route>
-         
-        </Switch>*/
 
 
